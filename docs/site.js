@@ -21,4 +21,14 @@
   if (hint) {
     hint.textContent = `Liens : github.com/${repo}/releases/latest`;
   }
+
+  const mobileWarn = document.getElementById("mobile-warning");
+  if (mobileWarn) {
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    if (isMobile) {
+      mobileWarn.hidden = false;
+      if (btnSetup) btnSetup.setAttribute("aria-disabled", "true");
+      if (btnPortable) btnPortable.setAttribute("aria-disabled", "true");
+    }
+  }
 })();
