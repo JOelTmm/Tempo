@@ -87,7 +87,8 @@
           ]
         }
       ],
-      "icon": "public/logo-tempo.ico"
+      "icon": "public/logo-tempo.ico",
+      "signAndEditExecutable": false
     },
     "nsis": {
       "oneClick": false,

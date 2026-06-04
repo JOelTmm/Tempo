@@ -4,13 +4,12 @@ Site statique simple : une page pour **télécharger l'app** et expliquer le **m
 
 ## 1. Activer GitHub Pages
 
-1. Poussez le projet sur GitHub (dépôt public ou privé avec Pages).
-2. Sur GitHub : **Settings → Pages**
-3. **Source** : `Deploy from a branch`
-4. **Branch** : `main` (ou `master`) — dossier **`/docs`**
-5. Enregistrez — URL du projet : **https://joeltmm.github.io/Tempo/**
+1. Dépôt : **https://github.com/JOelTmm/Tempo**
+2. Sur GitHub : **Settings → Pages → Build and deployment → Source** : **GitHub Actions**
+3. À chaque push sur `main`, le workflow déploie le dossier `docs/`
+4. URL du site : **https://joeltmm.github.io/Tempo/**
 
-Le workflow `.github/workflows/pages.yml` déploie automatiquement le dossier `docs/` à chaque push.
+(Si le premier déploiement échoue, activez **GitHub Actions** comme source Pages puis relancez le workflow **GitHub Pages**.)
 
 ## 2. Liens de téléchargement
 
