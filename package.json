@@ -1,0 +1,105 @@
+{
+  "name": "tempo",
+  "version": "1.0.0",
+  "description": "Tempo — Votre Arène Musicale. Connectez. Jouez. Découvrez.",
+  "main": "dist-electron/main.cjs",
+  "author": "Tempo",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/free-port.mjs 5173",
+    "dev": "npm run build:electron && concurrently -k \"vite\" \"wait-on http://127.0.0.1:5173 && cross-env NODE_ENV=development electron .\"",
+    "build:electron": "esbuild electron/main.ts electron/preload.ts --bundle --platform=node --format=cjs --outdir=dist-electron --out-extension:.js=.cjs --external:electron --sourcemap && node -e \"const fs=require('fs');fs.cpSync('electron/data','dist-electron/data',{recursive:true});if(fs.existsSync('public/logo-tempo.ico')){fs.mkdirSync('dist-electron/public',{recursive:true});fs.copyFileSync('public/logo-tempo.ico','dist-electron/public/logo-tempo.ico');}\"",
+    "build": "npm run build:electron && vite build",
+    "preview": "vite preview",
+    "start": "npm run build:electron && cross-env NODE_ENV=production electron .",
+    "launch": "npm run build && cross-env NODE_ENV=production electron .",
+    "icons": "python scripts/generate-icon.py",
+    "desktop": "npm run icons && powershell -ExecutionPolicy Bypass -File scripts/create-desktop-shortcut.ps1",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:portable": "npm run build && electron-builder --win portable",
+    "setup:supabase": "powershell -ExecutionPolicy Bypass -File scripts/setup-supabase.ps1",
+    "verify:supabase": "node scripts/verify-supabase.mjs",
+    "supabase:install-table": "powershell -ExecutionPolicy Bypass -File scripts/install-supabase-table.ps1",
+    "supabase:realtime": "powershell -ExecutionPolicy Bypass -File scripts/enable-realtime.ps1",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "bcryptjs": "^3.0.2",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.2",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^4.5.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^36.3.1",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.25.5",
+    "pg": "^8.21.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "io.laplateforme.tempo",
+    "productName": "Tempo",
+    "copyright": "Tempo",
+    "directories": {
+      "output": "release",
+      "buildResources": "public"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "dist-electron/main.cjs"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/logo-tempo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerLanguages": [
+        "fr",
+        "en"
+      ],
+      "artifactName": "Tempo-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "Tempo-Portable.${ext}"
+    }
+  }
+}

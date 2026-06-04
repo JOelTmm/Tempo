@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Tempo — Votre arène musicale. Téléchargez l'app Windows et jouez en ligne avec vos amis."
+    />
+    <title>Tempo — Télécharger l'application</title>
+    <link rel="icon" href="assets/logo-tempo.jfif" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+
+    <header class="wrap hero">
+      <img src="assets/logo-tempo.jfif" alt="Tempo" class="logo" width="140" height="140" />
+      <h1><span class="orange">Tempo</span> — Arène musicale</h1>
+      <p class="tagline">Connectez. Jouez. Découvrez.</p>
+      <p class="lead">
+        Blind test, featurings, pixel cover, speed lyrics — en solo, contre l'IA ou <strong>en ligne</strong> avec un
+        code salon.
+      </p>
+    </header>
+
+    <main class="wrap">
+      <section class="card card-download" id="download">
+        <h2>Télécharger Tempo (Windows)</h2>
+        <p class="muted">Application desktop gratuite — aucune installation compliquée.</p>
+
+        <div class="buttons">
+          <a id="btn-setup" class="btn btn-primary" href="#">Installer Tempo (.exe)</a>
+          <a id="btn-portable" class="btn btn-secondary" href="#">Version portable</a>
+        </div>
+
+        <p id="release-hint" class="hint muted"></p>
+
+        <details class="how-release">
+          <summary>Je suis le développeur — publier une nouvelle version</summary>
+          <ol>
+            <li>Dans le projet : <code>npm run dist:win</code></li>
+            <li>Sur GitHub : <strong>Releases → New release</strong></li>
+            <li>Glissez les fichiers <code>.exe</code> du dossier <code>release/</code></li>
+            <li>Nommez-les par ex. <code>Tempo-Setup.exe</code> et <code>Tempo-Portable.exe</code></li>
+          </ol>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Jouer en ligne</h2>
+        <ol class="steps">
+          <li>Téléchargez et installez Tempo sur chaque PC</li>
+          <li>Créez un compte (email + mot de passe)</li>
+          <li>Menu <strong>En ligne</strong> → <strong>Créer un salon</strong></li>
+          <li>Envoyez le <strong>code</strong> à vos amis → ils cliquent <strong>Rejoindre</strong></li>
+        </ol>
+        <p class="muted small">
+          Multijoueur Internet avec Supabase (configuré dans l'app). Sinon : salon local sur le même Wi‑Fi.
+        </p>
+      </section>
+
+      <section class="grid-2">
+        <article class="card mini">
+          <h3>Quiz musical</h3>
+          <p>Blind test & samples — playlists Deezer / Spotify</p>
+        </article>
+        <article class="card mini">
+          <h3>Rolengamos</h3>
+          <p>Enchaînez les featurings — IA ou multijoueur</p>
+        </article>
+        <article class="card mini">
+          <h3>PixelCover</h3>
+          <p>Devinez la pochette pixelisée en 15 s</p>
+        </article>
+        <article class="card mini">
+          <h3>Speed Lyrics</h3>
+          <p>Paroles à trou ou coupure audio</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="wrap footer">
+      <p>
+        Projet Tempo — hébergé sur
+        <a id="repo-link" href="#" target="_blank" rel="noopener">GitHub</a>
+      </p>
+      <p class="muted small">
+        <a href="https://github.com/JOelTmm/Tempo" target="_blank" rel="noopener">Code source</a> — Releases pour les mises à jour
+      </p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>

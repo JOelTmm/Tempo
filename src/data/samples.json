@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "hint": "Prod rap culte — sample funk des années 70",
+    "choices": ["California Love - 2Pac", "Nuthin' But a G Thang - Dr. Dre", "Hypnotize - Notorious B.I.G.", "Juicy - Notorious B.I.G."],
+    "answer": 0,
+    "previewQuery": "California Love 2Pac"
+  },
+  {
+    "id": "2",
+    "hint": "Hit pop 2020s — sample disco français",
+    "choices": ["Blinding Lights - The Weeknd", "Levitating - Dua Lipa", "Save Your Tears - The Weeknd", "Starboy - The Weeknd"],
+    "answer": 0,
+    "previewQuery": "Blinding Lights"
+  },
+  {
+    "id": "3",
+    "hint": "Classique soul samplé en hip-hop",
+    "choices": ["Touch the Sky - Kanye West", "Stronger - Kanye West", "Gold Digger - Kanye West", "Runaway - Kanye West"],
+    "answer": 2,
+    "previewQuery": "Gold Digger Kanye"
+  }
+]

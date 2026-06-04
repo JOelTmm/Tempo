@@ -1,0 +1,25 @@
+{
+  "artists": {
+    "Drake": ["Rihanna", "Future", "Nicki Minaj", "Lil Wayne", "Travis Scott"],
+    "Rihanna": ["Drake", "Eminem", "Calvin Harris", "Jay-Z", "Kanye West"],
+    "Eminem": ["Rihanna", "Drake", "Ed Sheeran", "Snoop Dogg", "50 Cent"],
+    "Beyoncé": ["Jay-Z", "Shakira", "Lady Gaga", "Kendrick Lamar", "Coldplay"],
+    "Jay-Z": ["Beyoncé", "Kanye West", "Rihanna", "Alicia Keys", "Justin Timberlake"],
+    "Kanye West": ["Jay-Z", "Rihanna", "Travis Scott", "Kid Cudi", "Paul McCartney"],
+    "Lady Gaga": ["Beyoncé", "Bradley Cooper", "Ariana Grande", "Colby O'Donis", "Tony Bennett"],
+    "The Weeknd": ["Daft Punk", "Drake", "Lana Del Rey", "Travis Scott", "Ariana Grande"],
+    "Daft Punk": ["The Weeknd", "Pharrell Williams", "Nile Rodgers", "Julian Casablancas"],
+    "Ed Sheeran": ["Eminem", "Justin Bieber", "Taylor Swift", "Beyoncé", "Khalid"],
+    "Taylor Swift": ["Ed Sheeran", "Kendrick Lamar", "Brendon Urie", "Bon Iver", "Future"],
+    "Kendrick Lamar": ["Taylor Swift", "Beyoncé", "Rihanna", "SZA", "Travis Scott"],
+    "Travis Scott": ["Drake", "Kendrick Lamar", "The Weeknd", "Kanye West", "Hunxho"],
+    "Ariana Grande": ["Lady Gaga", "The Weeknd", "Nicki Minaj", "Justin Bieber", "Doja Cat"],
+    "Justin Bieber": ["Ed Sheeran", "Ariana Grande", "Ludacris", "DJ Khaled", "Quavo"],
+    "Stromae": ["Kendrick Lamar", "Coldplay", "Pomme", "Orelsan"],
+    "Orelsan": ["Stromae", "Gringe", "Nekfeu", "Vald"],
+    "Nekfeu": ["Orelsan", "S-Crew", "Alpha Wann", "Lomepal"],
+    "Angèle": ["Damso", "Roméo Elvis", "Kiddy Smile", "Trombone Shorty"],
+    "Damso": ["Angèle", "Booba", "Ninho", "Hamza"]
+  },
+  "startPool": ["Drake", "Rihanna", "Stromae", "Angèle", "The Weeknd", "Taylor Swift", "Orelsan", "Beyoncé"]
+}

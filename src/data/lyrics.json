@@ -1,0 +1,164 @@
+[
+  {
+    "line": "J'ai demandé à la lune si tu voulais encore ___",
+    "answer": "moi",
+    "songTitle": "Demande à la lune",
+    "artist": "Indochine",
+    "previewQuery": "demande a la lune Indochine",
+    "cutAt": 17.5
+  },
+  {
+    "line": "Je te promets, je te promets c'est pas une ___",
+    "answer": "histoire",
+    "songTitle": "Je te promets",
+    "artist": "Johnny Hallyday",
+    "previewQuery": "je te promets Johnny Hallyday",
+    "cutAt": 11
+  },
+  {
+    "line": "Under pressure, pushing down on ___",
+    "answer": "me",
+    "songTitle": "Under Pressure",
+    "artist": "Queen",
+    "previewQuery": "Under Pressure Queen",
+    "cutAt": 14
+  },
+  {
+    "line": "Is this the real life, is this just ___",
+    "answer": "fantasy",
+    "songTitle": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "previewQuery": "Bohemian Rhapsody Queen",
+    "cutAt": 19
+  },
+  {
+    "line": "Alors on danse, on danse, on danse et toi tu ___",
+    "answer": "sens",
+    "songTitle": "Alors on danse",
+    "artist": "Stromae",
+    "previewQuery": "Alors on danse Stromae",
+    "altTitles": ["Alors On Danse"],
+    "cutAt": 10.5
+  },
+  {
+    "line": "Formidable, formidable, tu étais ___",
+    "answer": "formidable",
+    "songTitle": "Formidable",
+    "artist": "Stromae",
+    "previewQuery": "Formidable Stromae",
+    "cutAt": 8.5
+  },
+  {
+    "line": "Papaoutai, où t'es papa où t'es où t'es papa ___",
+    "answer": "outai",
+    "songTitle": "Papaoutai",
+    "artist": "Stromae",
+    "previewQuery": "Papaoutai Stromae",
+    "altTitles": ["papaoutai"],
+    "cutAt": 13
+  },
+  {
+    "line": "Balance ton quoi, balance ton quoi, balance ton ___",
+    "answer": "quoi",
+    "songTitle": "Balance ton quoi",
+    "artist": "Angèle",
+    "previewQuery": "Balance ton quoi Angèle",
+    "cutAt": 9.5
+  },
+  {
+    "line": "J'entends le son de la police qui ___",
+    "answer": "arrive",
+    "songTitle": "La fête est finie",
+    "artist": "Orelsan",
+    "previewQuery": "La fete est finie Orelsan",
+    "cutAt": 15
+  },
+  {
+    "line": "Basique, basique, une chanson ___",
+    "answer": "basique",
+    "songTitle": "Basique",
+    "artist": "Orelsan",
+    "previewQuery": "Basique Orelsan",
+    "cutAt": 7.5
+  },
+  {
+    "line": "Je l'aime à mourir, à mourir, à mourir, je l'aime à ___",
+    "answer": "mourir",
+    "songTitle": "Je l'aime à mourir",
+    "artist": "Francis Cabrel",
+    "previewQuery": "Je l aime a mourir Francis Cabrel",
+    "cutAt": 14.5
+  },
+  {
+    "line": "Pour que tu m'aimes encore, j'ai mis l'été en ___",
+    "answer": "hiver",
+    "songTitle": "Pour que tu m'aimes encore",
+    "artist": "Céline Dion",
+    "previewQuery": "Pour que tu m aimes encore Celine Dion",
+    "cutAt": 16
+  },
+  {
+    "line": "Quand le soleil dit bonjour aux ___",
+    "answer": "montagnes",
+    "songTitle": "Le jour se lève",
+    "artist": "Christophe",
+    "previewQuery": "Quand le soleil dit bonjour aux montagnes",
+    "cutAt": 12
+  },
+  {
+    "line": "Dernière danse, avant la ___",
+    "answer": "fin",
+    "songTitle": "Dernière danse",
+    "artist": "Indila",
+    "previewQuery": "Derniere danse Indila",
+    "cutAt": 14
+  },
+  {
+    "line": "On écrit sur les murs le nom de ceux que l'on ___",
+    "answer": "aime",
+    "songTitle": "On écrit sur les murs",
+    "artist": "Demis Roussos",
+    "previewQuery": "On ecrit sur les murs",
+    "cutAt": 12.5
+  },
+  {
+    "line": "Aux Champs-Élysées, aux Champs-Élysées, au soleil sous la ___",
+    "answer": "pluie",
+    "songTitle": "Aux Champs-Élysées",
+    "artist": "Joe Dassin",
+    "previewQuery": "Aux Champs Elysees Joe Dassin",
+    "cutAt": 11
+  },
+  {
+    "line": "Comme un ___ sur la banquise",
+    "answer": "manchot",
+    "songTitle": "Désenchantée",
+    "artist": "Mylène Farmer",
+    "previewQuery": "Desenchantee Mylene Farmer",
+    "cutAt": 13.5
+  },
+  {
+    "line": "Je veux, je veux, je veux seulement une ___",
+    "answer": "chose",
+    "songTitle": "Je veux",
+    "artist": "Zaz",
+    "previewQuery": "Je veux Zaz",
+    "cutAt": 9
+  },
+  {
+    "line": "Work work work work work, he said me haffi ___",
+    "answer": "work",
+    "songTitle": "Work",
+    "artist": "Rihanna",
+    "previewQuery": "Work Rihanna",
+    "cutAt": 11.5
+  },
+  {
+    "line": "We found love in a hopeless ___",
+    "answer": "place",
+    "songTitle": "We Found Love",
+    "artist": "Rihanna",
+    "previewQuery": "We Found Love Rihanna",
+    "cutAt": 10.5
+  }
+]
