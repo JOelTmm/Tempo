@@ -8,7 +8,7 @@ Un mini-site est dans le dossier **`docs/`** — une page pour télécharger l'a
 
 1. Modifiez `docs/config.js` (votre `utilisateur/repo` GitHub)
 2. GitHub → **Settings → Pages** → source **main** / dossier **docs**
-3. URL : `https://votre-utilisateur.github.io/Tempo/`
+3. URL : `https://joeltmm.github.io/Tempo/`
 
 Guide détaillé : **`docs/README.md`**
 
