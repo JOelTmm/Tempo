@@ -26,7 +26,7 @@ export function MultiplayerLobby({ game, onRoomReady }: Props) {
       const { client, room } = await createGameRoom(
         game,
         user?.displayName || "Hôte",
-        crypto.randomUUID(),
+        user?.userId || crypto.randomUUID(),
         true
       );
       setMode(client.mode);
@@ -52,7 +52,7 @@ export function MultiplayerLobby({ game, onRoomReady }: Props) {
       const { client, room } = await joinGameRoom(
         code.trim(),
         user?.displayName || "Joueur",
-        crypto.randomUUID(),
+        user?.userId || crypto.randomUUID(),
         true
       );
       setMode(client.mode);

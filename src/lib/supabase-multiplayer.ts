@@ -129,6 +129,36 @@ export class SupabaseMultiplayerClient {
       .eq("code", this.roomCode);
   }
 
+  async setGame(game: RoomGame, payload: Record<string, unknown> = {}) {
+    if (!this.roomCode) return;
+    const { data } = await this.supabase.from("tempo_rooms").select("payload").eq("code", this.roomCode).single();
+    const merged = {
+      ...(data?.payload as object),
+      ...payload,
+      phase: "launch",
+      launchedAt: Date.now(),
+    };
+    const { error } = await this.supabase
+      .from("tempo_rooms")
+      .update({ game, payload: merged, updated_at: new Date().toISOString() })
+      .eq("code", this.roomCode);
+    if (error) throw new Error(error.message);
+  }
+
+  async leaveRoom(playerId: string) {
+    if (!this.roomCode) return;
+    const { data } = await this.supabase.from("tempo_rooms").select("players").eq("code", this.roomCode).single();
+    const players = ((data?.players as { id: string; name: string }[]) || []).filter((p) => p.id !== playerId);
+    await this.supabase
+      .from("tempo_rooms")
+      .update({ players, updated_at: new Date().toISOString() })
+      .eq("code", this.roomCode);
+  }
+
+  getRoomCode() {
+    return this.roomCode;
+  }
+
   close() {
     this.channel?.unsubscribe();
     this.channel = null;

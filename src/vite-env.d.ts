@@ -18,7 +18,9 @@ export interface Track {
 }
 
 export type Difficulty = "facile" | "normal" | "difficile";
-export type RoomGame = "flashquiz" | "rolengamos";
+export type RoomGame = "flashquiz" | "rolengamos" | "pixelcover" | "speedlyrics" | "lobby";
+
+export type PlayableRoomGame = Exclude<RoomGame, "lobby">;
 
 interface ImportMetaEnv {
   readonly VITE_SUPABASE_URL?: string;

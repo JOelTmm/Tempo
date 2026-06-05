@@ -26,7 +26,7 @@ export function PixelatedCover({ src, reveal, className = "" }: Props) {
 
       const t = Math.min(1, Math.max(0, reveal));
       // Peu de blocs = très pixelisé ; plus de blocs = image nette (reveal 0 → 1)
-      const blocks = Math.max(8, Math.round(8 + t * 40));
+      const blocks = Math.max(20, Math.round(20 + t * 28));
 
       const sw = img.width;
       const sh = img.height;

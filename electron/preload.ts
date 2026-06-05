@@ -79,6 +79,19 @@ const tempo = {
       }>,
     openReleaseFolder: () =>
       ipcRenderer.invoke("app:openReleaseFolder") as Promise<{ ok: boolean; message: string }>,
+    checkForUpdates: () =>
+      ipcRenderer.invoke("app:checkForUpdates") as Promise<{
+        ok: boolean;
+        status: string;
+        message: string;
+        version?: string;
+      }>,
+    installUpdate: () => ipcRenderer.invoke("app:installUpdate") as Promise<{ ok: boolean }>,
+    onUpdateReady: (fn: (data: { version: string }) => void) => {
+      const handler = (_: unknown, data: { version: string }) => fn(data);
+      ipcRenderer.on("app:update-ready", handler);
+      return () => ipcRenderer.removeListener("app:update-ready", handler);
+    },
   },
 };
 

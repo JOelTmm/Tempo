@@ -11,12 +11,28 @@ type ReleaseInfo = {
 export function DownloadAppCard() {
   const [info, setInfo] = useState<ReleaseInfo | null>(null);
   const [msg, setMsg] = useState("");
+  const [updateMsg, setUpdateMsg] = useState("");
 
   useEffect(() => {
     if (window.tempo?.app?.getReleaseInfo) {
       window.tempo.app.getReleaseInfo().then(setInfo).catch(() => undefined);
     }
+    const off = window.tempo?.app?.onUpdateReady?.((d) => {
+      setUpdateMsg(`Mise à jour ${d.version} prête — redémarrez ou cliquez Installer.`);
+    });
+    return () => {
+      off?.();
+    };
   }, []);
+
+  async function checkUpdates() {
+    const res = await window.tempo?.app?.checkForUpdates?.();
+    if (res) setUpdateMsg(res.message);
+  }
+
+  async function installUpdate() {
+    await window.tempo?.app?.installUpdate?.();
+  }
 
   async function openFolder() {
     if (!window.tempo?.app?.openReleaseFolder) return;
@@ -65,10 +81,19 @@ export function DownloadAppCard() {
       )}
 
       <div className="mt-4 flex flex-wrap gap-2">
+        <button type="button" className="btn-neon flex items-center gap-2 text-sm" onClick={checkUpdates}>
+          <Download size={16} /> Vérifier les mises à jour
+        </button>
+        {updateMsg.includes("prête") && (
+          <button type="button" className="btn-orange text-sm" onClick={installUpdate}>
+            Installer la mise à jour
+          </button>
+        )}
         <button type="button" className="btn-violet flex items-center gap-2 text-sm" onClick={openFolder}>
           <FolderOpen size={16} /> Ouvrir le dossier release
         </button>
       </div>
+      {updateMsg && <p className="mt-2 text-xs text-emerald-400">{updateMsg}</p>}
 
       <p className="mt-3 text-xs text-slate-500">
         Site de téléchargement :{" "}

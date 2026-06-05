@@ -48,6 +48,7 @@
     "cross-env": "^7.0.3",
     "electron": "^36.3.1",
     "electron-builder": "^25.1.8",
+    "electron-updater": "^6.6.2",
     "esbuild": "^0.25.5",
     "pg": "^8.21.0",
     "postcss": "^8.5.3",
@@ -101,6 +102,13 @@
     },
     "portable": {
       "artifactName": "Tempo-Portable.${ext}"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "JOelTmm",
+        "repo": "Tempo"
+      }
+    ]
   }
 }

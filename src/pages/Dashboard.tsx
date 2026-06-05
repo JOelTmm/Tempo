@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Globe, Headphones, LogOut, Music2, Radio, Shield, Sparkles, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { DownloadAppCard } from "../components/DownloadAppCard";
 import { HubSoundscape } from "../components/HubSoundscape";

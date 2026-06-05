@@ -2,6 +2,18 @@ import { isSupabaseConfigured } from "./supabase-config";
 import { MultiplayerClient, SupabaseMultiplayerClient, type GameRoomClient, type RoomState } from "./multiplayer";
 import type { RoomGame } from "../vite-env";
 
+function wrapSupabaseClient(sb: SupabaseMultiplayerClient): GameRoomClient {
+  return {
+    mode: "supabase",
+    sync: (p) => sb.sync(p),
+    setGame: (g, p) => sb.setGame(g, p),
+    leave: (id) => sb.leaveRoom(id),
+    getCode: () => sb.getRoomCode(),
+    close: () => sb.close(),
+    onRoomUpdate: (fn) => sb.onRoomUpdate(fn),
+  };
+}
+
 export async function createGameRoom(
   game: RoomGame,
   playerName: string,
@@ -11,13 +23,7 @@ export async function createGameRoom(
   if (preferInternet && isSupabaseConfigured()) {
     const sb = new SupabaseMultiplayerClient();
     const room = await sb.createRoom(game, playerName, playerId);
-    const client: GameRoomClient = {
-      mode: "supabase",
-      sync: (p) => sb.sync(p),
-      close: () => sb.close(),
-      onRoomUpdate: (fn) => sb.onRoomUpdate(fn),
-    };
-    return { client, room };
+    return { client: wrapSupabaseClient(sb), room };
   }
 
   const ws = new MultiplayerClient("127.0.0.1", 9876);
@@ -29,16 +35,18 @@ export async function createGameRoom(
       if (msg.type === "room:created") {
         clearTimeout(timeout);
         off();
-        const client: GameRoomClient = {
-          mode: "local",
-          sync: (p) => ws.sync(msg.room.code, p),
-          close: () => ws.close(),
-          onRoomUpdate: (fn) =>
-            ws.onMessage((m) => {
-              if (m.type === "room:update" || m.type === "room:sync") fn(m.room);
-            }),
-        };
-        resolve({ client, room: msg.room });
+        resolve({
+          client: {
+            mode: "local",
+            sync: (p) => ws.sync(msg.room.code, p),
+            close: () => ws.close(),
+            onRoomUpdate: (fn) =>
+              ws.onMessage((m) => {
+                if (m.type === "room:update" || m.type === "room:sync") fn(m.room);
+              }),
+          },
+          room: msg.room,
+        });
       }
       if (msg.type === "error") {
         clearTimeout(timeout);
@@ -58,13 +66,7 @@ export async function joinGameRoom(
   if (preferInternet && isSupabaseConfigured()) {
     const sb = new SupabaseMultiplayerClient();
     const room = await sb.joinRoom(code, playerName, playerId);
-    const client: GameRoomClient = {
-      mode: "supabase",
-      sync: (p) => sb.sync(p),
-      close: () => sb.close(),
-      onRoomUpdate: (fn) => sb.onRoomUpdate(fn),
-    };
-    return { client, room };
+    return { client: wrapSupabaseClient(sb), room };
   }
 
   const ws = new MultiplayerClient("127.0.0.1", 9876);
@@ -76,16 +78,18 @@ export async function joinGameRoom(
       if (msg.type === "room:joined" || msg.type === "room:update") {
         clearTimeout(timeout);
         off();
-        const client: GameRoomClient = {
-          mode: "local",
-          sync: (p) => ws.sync(msg.room.code, p),
-          close: () => ws.close(),
-          onRoomUpdate: (fn) =>
-            ws.onMessage((m) => {
-              if (m.type === "room:update" || m.type === "room:sync") fn(m.room);
-            }),
-        };
-        resolve({ client, room: msg.room });
+        resolve({
+          client: {
+            mode: "local",
+            sync: (p) => ws.sync(msg.room.code, p),
+            close: () => ws.close(),
+            onRoomUpdate: (fn) =>
+              ws.onMessage((m) => {
+                if (m.type === "room:update" || m.type === "room:sync") fn(m.room);
+              }),
+          },
+          room: msg.room,
+        });
       }
       if (msg.type === "error") {
         clearTimeout(timeout);

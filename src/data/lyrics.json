@@ -160,5 +160,125 @@
     "artist": "Rihanna",
     "previewQuery": "We Found Love Rihanna",
     "cutAt": 10.5
+  },
+  {
+    "line": "Hello from the other ___",
+    "answer": "side",
+    "songTitle": "Hello",
+    "artist": "Adele",
+    "previewQuery": "Hello Adele",
+    "cutAt": 18
+  },
+  {
+    "line": "Never mind, I'll find someone like ___",
+    "answer": "you",
+    "songTitle": "Someone Like You",
+    "artist": "Adele",
+    "previewQuery": "Someone Like You Adele",
+    "cutAt": 22
+  },
+  {
+    "line": "I got my mind on my money and my money on my ___",
+    "answer": "mind",
+    "songTitle": "Motivation",
+    "artist": "Lil Wayne",
+    "previewQuery": "Motivation Lil Wayne",
+    "cutAt": 8
+  },
+  {
+    "line": "Cause baby you're a firework, come on show 'em what you're ___",
+    "answer": "worth",
+    "songTitle": "Firework",
+    "artist": "Katy Perry",
+    "previewQuery": "Firework Katy Perry",
+    "cutAt": 12
+  },
+  {
+    "line": "I kissed a girl and I liked ___",
+    "answer": "it",
+    "songTitle": "I Kissed a Girl",
+    "artist": "Katy Perry",
+    "previewQuery": "I Kissed a Girl Katy Perry",
+    "cutAt": 9
+  },
+  {
+    "line": "Uptown funk you up, uptown funk you ___",
+    "answer": "up",
+    "songTitle": "Uptown Funk",
+    "artist": "Mark Ronson",
+    "previewQuery": "Uptown Funk Mark Ronson",
+    "cutAt": 11
+  },
+  {
+    "line": "I'm gonna pop some tags, only got twenty dollars in my ___",
+    "answer": "pocket",
+    "songTitle": "Thrift Shop",
+    "artist": "Macklemore",
+    "previewQuery": "Thrift Shop Macklemore",
+    "cutAt": 7
+  },
+  {
+    "line": "Wake me up before you go-go, don't leave me hanging on like a yo-yo ___",
+    "answer": "yo",
+    "songTitle": "Wake Me Up Before You Go-Go",
+    "artist": "Wham!",
+    "previewQuery": "Wake Me Up Before You Go Go Wham",
+    "cutAt": 13
+  },
+  {
+    "line": "Every breath you take, every move you ___",
+    "answer": "make",
+    "songTitle": "Every Breath You Take",
+    "artist": "The Police",
+    "previewQuery": "Every Breath You Take Police",
+    "cutAt": 16
+  },
+  {
+    "line": "Sweet dreams are made of this, who am I to ___",
+    "answer": "disagree",
+    "songTitle": "Sweet Dreams",
+    "artist": "Eurythmics",
+    "previewQuery": "Sweet Dreams Eurythmics",
+    "cutAt": 14
+  },
+  {
+    "line": "Billie Jean is not my lover, she's just a girl who claims that I am the ___",
+    "answer": "one",
+    "songTitle": "Billie Jean",
+    "artist": "Michael Jackson",
+    "previewQuery": "Billie Jean Michael Jackson",
+    "cutAt": 20
+  },
+  {
+    "line": "Cause this is thriller, thriller ___",
+    "answer": "night",
+    "songTitle": "Thriller",
+    "artist": "Michael Jackson",
+    "previewQuery": "Thriller Michael Jackson",
+    "cutAt": 15
+  },
+  {
+    "line": "I will always love ___",
+    "answer": "you",
+    "songTitle": "I Will Always Love You",
+    "artist": "Whitney Houston",
+    "previewQuery": "I Will Always Love You Whitney Houston",
+    "cutAt": 21
+  },
+  {
+    "line": "Ne me quitte pas, il faut oublier, tout peut s'___",
+    "answer": "oublier",
+    "songTitle": "Ne me quitte pas",
+    "artist": "Jacques Brel",
+    "previewQuery": "Ne me quitte pas Jacques Brel",
+    "cutAt": 19
+  },
+  {
+    "line": "La vie en rose, quand elle me prend dans ses ___",
+    "answer": "bras",
+    "songTitle": "La vie en rose",
+    "artist": "Édith Piaf",
+    "previewQuery": "La vie en rose Edith Piaf",
+    "cutAt": 12
   }
 ]

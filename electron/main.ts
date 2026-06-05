@@ -51,6 +51,7 @@ import {
   type OAuthProvider,
 } from "./oauth-server";
 import { getReleaseInfo } from "./app-release";
+import { registerAutoUpdate } from "./auto-update";
 
 const isDev = process.env.NODE_ENV === "development";
 let mainWindow: BrowserWindow | null = null;
@@ -130,6 +131,7 @@ app.whenReady().then(() => {
   initRolengamos();
   startRoomServer();
   createWindow();
+  registerAutoUpdate(() => mainWindow);
 
   ipcMain.handle("auth:register", (_e, email: string, password: string, name: string) =>
     registerUser(email, password, name)

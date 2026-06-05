@@ -6,7 +6,8 @@ import { MultiplayerLobby } from "../components/MultiplayerLobby";
 import type { GameRoomClient, RoomState } from "../lib/multiplayer";
 import { addXp } from "../lib/profile";
 import { consumePendingOnlineGame } from "../lib/multiplayer-session";
-import type { Difficulty } from "../vite-env";
+import { useAuth } from "../context/AuthContext";
+import type { Difficulty, Track } from "../vite-env";
 
 type GameMode = "ai" | "local" | "online";
 type Turn = "p1" | "p2" | "ai";
@@ -21,9 +22,17 @@ function normalize(s: string) {
   return s.trim().toLowerCase();
 }
 
+function playerNameForId(id: string, players: { id: string; name: string }[]) {
+  return players.find((p) => p.id === id)?.name || "Joueur";
+}
+
 export function Rolengamos() {
   const [searchParams] = useSearchParams();
+  const { user } = useAuth();
   const [mode, setMode] = useState<GameMode>("ai");
+  const onlinePlayerIdRef = useRef("");
+  const [onlineTurnIndex, setOnlineTurnIndex] = useState(0);
+  const [onlinePlayers, setOnlinePlayers] = useState<{ id: string; name: string }[]>([]);
   const [difficulty, setDifficulty] = useState<Difficulty>("normal");
   const [current, setCurrent] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -49,7 +58,13 @@ export function Rolengamos() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const turnSec = TIME_BY_DIFF[difficulty];
-  const isPlayerTurn = mode !== "ai" || turn === "p1";
+  const onlineActiveId =
+    mode === "online" && onlinePlayers.length > 0
+      ? onlinePlayers[onlineTurnIndex % onlinePlayers.length]?.id
+      : null;
+  const isMyOnlineTurn = mode === "online" && onlineActiveId === onlinePlayerIdRef.current;
+  const isPlayerTurn =
+    mode === "online" ? isMyOnlineTurn : mode !== "ai" || turn === "p1";
   const useChoices = mode === "ai" && difficulty === "facile";
 
   const startGame = useCallback(async () => {
@@ -72,15 +87,26 @@ export function Rolengamos() {
     if (searchParams.get("online") === "1") {
       const pending = consumePendingOnlineGame("rolengamos");
       if (pending) {
+        onlinePlayerIdRef.current = user?.userId || "";
         mpRef.current = pending.client;
-        pending.client.onRoomUpdate((r) => {
+        setOnlinePlayers(pending.room.players);
+        const applyPayload = (r: typeof pending.room) => {
+          setOnlinePlayers(r.players);
+          if (typeof r.payload.turnIndex === "number") setOnlineTurnIndex(r.payload.turnIndex as number);
           if (r.payload.current) setCurrent(r.payload.current as string);
+          if (Array.isArray(r.payload.used)) setUsed(r.payload.used as string[]);
+          if (Array.isArray(r.payload.history)) setHistory(r.payload.history as string[]);
           if (r.payload.log) setLog((l) => [...l, r.payload.log as string]);
-        });
+        };
+        applyPayload(pending.room);
+        pending.client.onRoomUpdate(applyPayload);
         setMode("online");
         setStarted(true);
-        const start = (pending.room.payload.start as string) || pending.room.players[0]?.name || "";
-        if (start) setCurrent(start);
+        const start = (pending.room.payload.start as string) || "";
+        if (start) {
+          setCurrent(start);
+          setHistory((pending.room.payload.history as string[]) || [start]);
+        }
         setLog([`🌐 Salon ${pending.room.code} — ${pending.room.players.length} joueur(s)`]);
         return;
       }
@@ -168,7 +194,19 @@ export function Rolengamos() {
     setLog((l) => [...l, `✓ ${playerLabel} : ${from} → ${to}`]);
     setScore((s) => s + 50);
     setTimeLeft(turnSec);
-    mpRef.current?.sync({ current: to, history: [...history, to], log: `${playerLabel}: ${to}` });
+    if (mode === "online" && onlinePlayers.length > 0) {
+      const nextTurn = (onlineTurnIndex + 1) % onlinePlayers.length;
+      setOnlineTurnIndex(nextTurn);
+      mpRef.current?.sync({
+        current: to,
+        history: [...history, to],
+        used: [...used, normalize(to)],
+        turnIndex: nextTurn,
+        log: `${playerLabel}: ${to}`,
+      });
+    } else {
+      mpRef.current?.sync({ current: to, history: [...history, to], log: `${playerLabel}: ${to}` });
+    }
   };
 
   const runAiTurn = async (from: string) => {
@@ -208,7 +246,14 @@ export function Rolengamos() {
       return;
     }
 
-    const label = mode === "local" ? (turn === "p1" ? "Joueur 1" : "Joueur 2") : "Vous";
+    const label =
+      mode === "online"
+        ? playerNameForId(onlinePlayerIdRef.current, onlinePlayers)
+        : mode === "local"
+          ? turn === "p1"
+            ? "Joueur 1"
+            : "Joueur 2"
+          : "Vous";
     const nextName = result.canonicalTo || guess;
     await applyMove(current, nextName, label);
 
@@ -379,7 +424,21 @@ export function Rolengamos() {
           ▶ Aperçu sonore
         </button>
         <p className="mt-2 text-sm">
-          Tour : <strong>{mode === "ai" ? (turn === "p1" ? "Vous" : "IA") : turn === "p1" ? "Joueur 1" : "Joueur 2"}</strong>
+          Tour :{" "}
+          <strong>
+            {mode === "online"
+              ? playerNameForId(onlineActiveId || "", onlinePlayers)
+              : mode === "ai"
+                ? turn === "p1"
+                  ? "Vous"
+                  : "IA"
+                : turn === "p1"
+                  ? "Joueur 1"
+                  : "Joueur 2"}
+          </strong>
+          {mode === "online" && !isMyOnlineTurn && (
+            <span className="text-slate-500"> — en attente de votre tour</span>
+          )}
           {isPlayerTurn && !loading && (
             <>
               {" "}

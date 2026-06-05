@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Gamepad2, Shield, Users } from "lucide-react";
+import { Cloud, Gamepad2, Shield, Users } from "lucide-react";
+import { fetchActiveOnlineRooms, type OnlineRoomRow } from "../lib/online-rooms-admin";
 
 interface UserRow {
   id: string;
@@ -14,6 +15,7 @@ interface UserRow {
 export function ManagerDashboard() {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [logs, setLogs] = useState<string[]>([]);
+  const [onlineRooms, setOnlineRooms] = useState<OnlineRoomRow[]>([]);
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
@@ -23,6 +25,9 @@ export function ManagerDashboard() {
     window.tempo.manager.logs().then((r) => {
       if (r.ok) setLogs(r.logs);
     });
+    fetchActiveOnlineRooms().then(setOnlineRooms);
+    const t = setInterval(() => fetchActiveOnlineRooms().then(setOnlineRooms), 15000);
+    return () => clearInterval(t);
   }, []);
 
   async function saveScore(u: UserRow) {
@@ -41,8 +46,30 @@ export function ManagerDashboard() {
         <div>
           <h1 className="font-display text-3xl font-bold text-tempo-orange">Mode Manager</h1>
           <p className="text-sm text-slate-400">Administration Tempo — accès exclusif</p>
+          <p className="mt-1 text-xs text-amber-400/90">
+            Les comptes ci-dessous sont enregistrés sur <strong>ce PC uniquement</strong>. Les salons Internet sont visibles
+            pour tous les joueurs connectés à distance.
+          </p>
         </div>
       </div>
+
+      <section className="arena-card border-tempo-blue/40">
+        <h2 className="mb-3 flex items-center gap-2 font-display text-xl font-bold">
+          <Cloud size={20} /> Salons en ligne (2 h)
+        </h2>
+        {onlineRooms.length === 0 ? (
+          <p className="text-sm text-slate-500">Aucun salon actif — vos amis doivent créer un salon depuis En ligne.</p>
+        ) : (
+          <ul className="space-y-2 text-sm">
+            {onlineRooms.map((r) => (
+              <li key={r.code} className="rounded-lg border border-tempo-border px-3 py-2">
+                <span className="font-mono text-tempo-orange">{r.code}</span> — {r.game} —{" "}
+                {r.players.map((p) => p.name).join(", ")}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       <section className="arena-card">
         <h2 className="mb-4 flex items-center gap-2 font-display text-xl font-bold">

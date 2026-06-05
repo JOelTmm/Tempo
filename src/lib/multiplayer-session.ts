@@ -14,7 +14,8 @@ export function setPendingOnlineGame(data: PendingOnlineGame) {
 }
 
 export function consumePendingOnlineGame(game: RoomGame): PendingOnlineGame | null {
-  if (!pending || pending.game !== game) return null;
+  if (!pending) return null;
+  if (pending.game !== game && pending.game !== "lobby") return null;
   const data = pending;
   pending = null;
   return data;

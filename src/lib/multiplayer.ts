@@ -23,6 +23,9 @@ export type MultiplayerMode = "supabase" | "local";
 export interface GameRoomClient {
   mode: MultiplayerMode;
   sync: (payload: Record<string, unknown>) => void | Promise<void>;
+  setGame?: (game: RoomGame, payload?: Record<string, unknown>) => void | Promise<void>;
+  leave?: (playerId: string) => void | Promise<void>;
+  getCode?: () => string;
   close: () => void;
   onRoomUpdate: (fn: (room: RoomState) => void) => () => void;
 }
