@@ -1,6 +1,6 @@
 {
   "name": "tempo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tempo — Votre Arène Musicale. Connectez. Jouez. Découvrez.",
   "main": "dist-electron/main.cjs",
   "author": "Tempo",
@@ -21,6 +21,7 @@
     "dist:portable": "npm run build && electron-builder --win portable",
     "setup:supabase": "powershell -ExecutionPolicy Bypass -File scripts/setup-supabase.ps1",
     "verify:supabase": "node scripts/verify-supabase.mjs",
+    "supabase:friends": "node scripts/apply-friends-lobby.mjs",
     "supabase:install-table": "powershell -ExecutionPolicy Bypass -File scripts/install-supabase-table.ps1",
     "supabase:realtime": "powershell -ExecutionPolicy Bypass -File scripts/enable-realtime.ps1",
     "typecheck": "tsc --noEmit"
